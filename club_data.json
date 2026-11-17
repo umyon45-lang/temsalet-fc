@@ -1,0 +1,69 @@
+{
+  "matches": [
+    {
+      "id": "1",
+      "opp": "tnshu dicha",
+      "score": "3 - 1",
+      "date": "Nov 10, 2026",
+      "status": "Finished"
+    },
+    {
+      "id": "2",
+      "opp": "tesfa",
+      "score": "VS",
+      "date": "Nov 22, 2026",
+      "status": "Upcoming"
+    }
+  ],
+  "players": [
+    {
+      "id": "101",
+      "name": "Yonas B.",
+      "num": "10",
+      "pos": "Forward"
+    },
+    {
+      "id": "102",
+      "name": "Alex Smith",
+      "num": "1",
+      "pos": "Goalkeeper"
+    },
+    {
+      "id": "46f9c95b",
+      "name": "dershaye",
+      "num": "6",
+      "pos": "Midfielder"
+    },
+    {
+      "id": "8066101f",
+      "name": "yambule",
+      "num": "1",
+      "pos": "Forward"
+    },
+    {
+      "id": "759a2d24",
+      "name": "zelalem",
+      "num": "4",
+      "pos": "Defender"
+    }
+  ],
+  "coach": {
+    "name": "Head Coach",
+    "role": "Manager & Coach",
+    "photo": "owner.jpg"
+  },
+  "victories": [
+    {
+      "id": "ade2fc92",
+      "title": "arbaminch",
+      "date": "2016-03-02",
+      "photo": "uploads/victory_f4952dae.jpg"
+    },
+    {
+      "id": "97115393",
+      "title": "memory in beloved",
+      "date": "2016-01-07",
+      "photo": "uploads/victory_2c185f70.jpg"
+    }
+  ]
+}
