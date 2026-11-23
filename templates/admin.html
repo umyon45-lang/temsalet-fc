@@ -2,47 +2,52 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Owner Dashboard | Temsalet FC</title>
-  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@700&family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@700&family=Plus+Jakarta+Sans:wght@400;600;700&family=Noto+Sans+Ethiopic:wght@600;700&display=swap" rel="stylesheet">
   <style>
-    body { background: #090d16; color: #f9fafb; font-family: 'Plus Jakarta Sans', sans-serif; margin: 0; padding-bottom: 60px; }
-    .topbar { background: #111827; border-bottom: 1px solid rgba(255,255,255,0.08); padding: 16px 24px; display: flex; justify-content: space-between; align-items: center; }
-    .topbar h1 { font-family: 'Oswald', sans-serif; font-size: 1.5rem; color: #10b981; margin: 0; }
-    .nav-btns a { text-decoration: none; padding: 8px 14px; border-radius: 6px; font-size: 0.85rem; font-weight: 700; margin-left: 10px; }
+    * { box-sizing: border-box; }
+    body { background: #090d16; color: #f9fafb; font-family: 'Plus Jakarta Sans', 'Noto Sans Ethiopic', sans-serif; margin: 0; padding-bottom: 50px; font-size: 14px; }
+    .topbar { background: #111827; border-bottom: 1px solid rgba(255,255,255,0.08); padding: 12px 16px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; }
+    .topbar h1 { font-family: 'Oswald', 'Noto Sans Ethiopic', sans-serif; font-size: 1.25rem; color: #10b981; margin: 0; }
+    .nav-btns { display: flex; gap: 8px; }
+    .nav-btns a { text-decoration: none; padding: 7px 12px; border-radius: 6px; font-size: 0.78rem; font-weight: 700; }
     .btn-site { background: #1f2937; color: #fff; }
     .btn-out { background: #ef4444; color: #fff; }
 
-    .wrap { max-width: 1050px; margin: 30px auto; padding: 0 20px; display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px; }
-    .panel { background: #111827; border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 24px; }
-    .panel h2 { font-family: 'Oswald', sans-serif; color: #10b981; font-size: 1.4rem; margin-top: 0; margin-bottom: 16px; text-transform: uppercase; }
-    
-    input, select { width: 100%; box-sizing: border-box; padding: 10px 12px; margin-bottom: 12px; background: #090d16; border: 1px solid #374151; color: #fff; border-radius: 6px; }
-    input[type="file"] { padding: 8px; font-size: 0.85rem; color: #9ca3af; }
-    .btn-green { width: 100%; padding: 11px; background: #10b981; color: #090d16; font-weight: 700; border: none; border-radius: 6px; cursor: pointer; text-transform: uppercase; }
+    .wrap { max-width: 1050px; margin: 20px auto; padding: 0 14px; display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 18px; }
+    .panel { background: #111827; border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 18px; }
+    .panel h2 { font-family: 'Oswald', 'Noto Sans Ethiopic', sans-serif; color: #10b981; font-size: 1.2rem; margin-top: 0; margin-bottom: 14px; text-transform: uppercase; }
+    .am-hint { color: #f59e0b; font-size: 0.78em; font-family: 'Noto Sans Ethiopic', sans-serif; text-transform: none; }
+
+    input, select { width: 100%; padding: 10px 12px; margin-bottom: 10px; background: #090d16; border: 1px solid #374151; color: #fff; border-radius: 6px; font-size: 0.88rem; }
+    input[type="file"] { padding: 8px; font-size: 0.8rem; color: #9ca3af; }
+    .btn-green { width: 100%; padding: 11px; background: #10b981; color: #090d16; font-weight: 700; border: none; border-radius: 6px; cursor: pointer; text-transform: uppercase; font-size: 0.85rem; }
     .btn-green:hover { background: #059669; }
 
-    .coach-preview { display: flex; align-items: center; gap: 14px; margin-bottom: 14px; }
-    .coach-preview img { width: 64px; height: 64px; border-radius: 50%; object-fit: cover; border: 2px solid #10b981; }
+    .coach-preview { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
+    .coach-preview img { width: 58px; height: 58px; border-radius: 50%; object-fit: cover; border: 2px solid #10b981; }
 
     .full-width { grid-column: 1 / -1; }
-    .item-row { background: #090d16; border: 1px solid #1f2937; padding: 14px; border-radius: 8px; margin-bottom: 12px; display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between; }
+    .item-row { background: #090d16; border: 1px solid #1f2937; padding: 12px; border-radius: 8px; margin-bottom: 10px; display: flex; flex-wrap: wrap; gap: 8px; align-items: center; justify-content: space-between; }
     .edit-form { display: flex; flex-wrap: wrap; gap: 8px; flex: 1; }
-    .edit-form input, .edit-form select { width: auto; flex: 1; min-width: 110px; margin-bottom: 0; padding: 8px; font-size: 0.85rem; }
-    .btn-save { background: #f59e0b; color: #090d16; border: none; padding: 8px 14px; border-radius: 6px; font-weight: 700; cursor: pointer; }
-    .btn-del { background: rgba(239, 68, 68, 0.2); color: #f87171; border: 1px solid #ef4444; padding: 8px 12px; border-radius: 6px; font-weight: 700; cursor: pointer; }
-    .flash { max-width: 1050px; margin: 20px auto 0; padding: 12px 16px; border-radius: 8px; }
+    .edit-form input, .edit-form select { width: auto; flex: 1; min-width: 115px; margin-bottom: 0; padding: 8px; font-size: 0.82rem; }
+    .btn-save { background: #f59e0b; color: #090d16; border: none; padding: 8px 12px; border-radius: 6px; font-weight: 700; cursor: pointer; font-size: 0.8rem; }
+    .btn-del { background: rgba(239, 68, 68, 0.2); color: #f87171; border: 1px solid #ef4444; padding: 8px 11px; border-radius: 6px; font-weight: 700; cursor: pointer; font-size: 0.8rem; }
+    .flash { max-width: 1050px; margin: 14px auto 0; padding: 10px 14px; border-radius: 8px; font-size: 0.85rem; }
     .flash.success { background: rgba(16, 185, 129, 0.15); color: #10b981; }
     .flash.error { background: rgba(239, 68, 68, 0.15); color: #f87171; }
-    .victory-preview { width: 90px; height: 64px; object-fit: cover; border-radius: 6px; }
+    .victory-preview { width: 80px; height: 56px; object-fit: cover; border-radius: 6px; }
+    .cat-pill { background: rgba(245, 158, 11, 0.16); color: #f59e0b; padding: 2px 7px; border-radius: 4px; font-size: 0.72rem; font-weight: 700; }
   </style>
 </head>
 <body>
 
   <div class="topbar">
-    <h1>🛡️ OWNER MANAGEMENT PANEL</h1>
+    <h1>🛡️ OWNER PANEL <span class="am-hint">/ የአስተዳዳሪ ገጽ</span></h1>
     <div class="nav-btns">
-      <a href="/" class="btn-site">View Public Site</a>
-      <a href="/logout" class="btn-out">Log Out</a>
+      <a href="/" class="btn-site">Public Site / ዋና ገጽ</a>
+      <a href="/logout" class="btn-out">Log Out / ውጣ</a>
     </div>
   </div>
 
@@ -53,9 +58,9 @@
   {% endwith %}
 
   <div class="wrap">
-    <!-- 1. Coach Profile & Photo Upload -->
+    <!-- 1. Coach Profile -->
     <div class="panel">
-      <h2>📸 Coach Profile & Photo</h2>
+      <h2>📸 Coach Profile <span class="am-hint">/ የአሰልጣኝ መገለጫ</span></h2>
       <div class="coach-preview">
         <img src="{{ url_for('static', filename=coach.photo) }}" alt="Coach" onerror="this.src='https://via.placeholder.com/64/111827/10b981?text=COACH'">
         <div>
@@ -65,71 +70,78 @@
       </div>
       <form method="POST" enctype="multipart/form-data">
         <input type="hidden" name="action" value="update_coach">
-        <input type="text" name="coach_name" value="{{ coach.name }}" placeholder="Coach Full Name" required>
-        <input type="text" name="coach_role" value="{{ coach.role }}" placeholder="Role (e.g. Head Coach)" required>
+        <input type="text" name="coach_name" value="{{ coach.name }}" placeholder="Coach Full Name / የአሰልጣኝ ስም" required>
+        <input type="text" name="coach_role" value="{{ coach.role }}" placeholder="Role / ኃላፊነት" required>
         <input type="file" name="coach_photo" accept=".jpg,.jpeg,.png,.webp">
-        <button type="submit" class="btn-green">Save Coach Profile</button>
+        <button type="submit" class="btn-green">Save Coach / አስቀምጥ</button>
       </form>
     </div>
 
     <!-- 2. Add New Match -->
     <div class="panel">
-      <h2>⚽ Add Match / Result</h2>
+      <h2>⚽ Add Match <span class="am-hint">/ ጨዋታ ጨምር</span></h2>
       <form method="POST">
         <input type="hidden" name="action" value="add_match">
-        <input type="text" name="opp" placeholder="Opponent Team Name" required>
-        <input type="text" name="date" placeholder="Date (e.g. Nov 18, 2026)" required>
-        <input type="text" name="score" placeholder="Score (e.g. 2 - 1, or leave blank if upcoming)">
+        <input type="text" name="opp" placeholder="Opponent Team / ተጋጣሚ ቡድን" required>
+        <input type="text" name="date" placeholder="Date / ቀን (e.g. Nov 18, 2026)" required>
+        <input type="text" name="score" placeholder="Score / ውጤት (e.g. 2 - 1)">
+        <input type="text" name="motm" placeholder="⭐ Man of the Match / የጨዋታው ኮከብ (Optional)">
         <select name="status">
-          <option value="Finished">Finished (Past Result)</option>
-          <option value="Upcoming">Upcoming Fixture</option>
+          <option value="Finished">Finished / የተጠናቀቀ ውጤት</option>
+          <option value="Upcoming">Upcoming / ቀጣይ ጨዋታ</option>
         </select>
-        <button type="submit" class="btn-green">Save Match</button>
+        <button type="submit" class="btn-green">Save Match / አስቀምጥ</button>
       </form>
     </div>
 
-    <!-- 3. Manage Club Victories -->
+    <!-- 3. Add Victory -->
     <div class="panel">
-      <h2>🏆 Add Club Victory</h2>
+      <h2>🏆 Add Victory <span class="am-hint">/ ድል ጨምር</span></h2>
       <form method="POST" enctype="multipart/form-data">
         <input type="hidden" name="action" value="add_victory">
-        <input type="text" name="title" placeholder="Victory title" required>
+        <input type="text" name="title" placeholder="Victory title / የድል ርዕስ" required>
         <input type="date" name="date" aria-label="Victory date" required>
         <input type="file" name="victory_photo" accept=".jpg,.jpeg,.png,.webp" required>
-        <button type="submit" class="btn-green">Upload Victory Photo</button>
+        <button type="submit" class="btn-green">Upload Photo / ፎቶ ጫን</button>
       </form>
     </div>
 
-    <!-- 3. Register Player -->
+    <!-- 4. Register Player -->
     <div class="panel">
-      <h2>👤 Register New Player</h2>
+      <h2>👤 Add Player <span class="am-hint">/ ተጫዋች መዝግብ</span></h2>
       <form method="POST">
         <input type="hidden" name="action" value="add_player">
-        <input type="text" name="name" placeholder="Player Full Name" required>
-        <input type="text" name="num" placeholder="Jersey Number (#)" required>
-        <select name="pos">
-          <option>Forward</option>
-          <option>Midfielder</option>
-          <option>Defender</option>
-          <option>Goalkeeper</option>
+        <input type="text" name="name" placeholder="Player Full Name / የተጫዋች ስም" required>
+        <input type="text" name="num" placeholder="Jersey Number / የማልያ ቁጥር (#)" required>
+        <select name="category">
+          <option value="U-13">U-13 Squad / ከ13 ዓመት በታች</option>
+          <option value="U-15">U-15 Squad / ከ15 ዓመት በታች</option>
+          <option value="U-17" selected>U-17 Squad / ከ17 ዓመት በታች</option>
         </select>
-        <button type="submit" class="btn-green">Add to Squad</button>
+        <select name="pos">
+          <option value="Forward">Forward / አጥቂ</option>
+          <option value="Midfielder">Midfielder / አማካይ</option>
+          <option value="Defender">Defender / ተከላካይ</option>
+          <option value="Goalkeeper">Goalkeeper / ግብ ጠባቂ</option>
+        </select>
+        <button type="submit" class="btn-green">Add to Squad / ወደ ቡድን ጨምር</button>
       </form>
     </div>
 
-    <!-- 4. Update Login Credentials -->
+    <!-- 5. Update Login Credentials -->
     <div class="panel">
-      <h2>🔑 Update Login Details</h2>
+      <h2>🔑 Login Details <span class="am-hint">/ የይለፍ ቃል ቀይር</span></h2>
       <form method="POST">
         <input type="hidden" name="action" value="change_pass">
-        <input type="text" name="new_username" value="{{ auth.username }}" placeholder="New Username" required>
-        <input type="password" name="new_password" placeholder="New Password (min 4 chars)" required>
-        <button type="submit" class="btn-green" style="background: #3b82f6; color: #fff;">Update Credentials</button>
+        <input type="text" name="new_username" value="{{ auth.username }}" placeholder="New Username / አዲስ ስም" required>
+        <input type="password" name="new_password" placeholder="New Password / አዲስ የይለፍ ቃል" required>
+        <button type="submit" class="btn-green" style="background: #3b82f6; color: #fff;">Update Login / አዘምን</button>
       </form>
     </div>
 
+    <!-- Manage Victories -->
     <div class="panel full-width">
-      <h2>🖼️ Manage Victory Photos</h2>
+      <h2>🖼️ Manage Victories <span class="am-hint">/ የድል ፎቶዎችን አስተዳድር</span></h2>
       {% for v in victories %}
         <div class="item-row">
           <img src="{{ url_for('static', filename=v.photo) }}" alt="{{ v.title }}" class="victory-preview">
@@ -137,50 +149,54 @@
           <form method="POST">
             <input type="hidden" name="action" value="delete_victory">
             <input type="hidden" name="victory_id" value="{{ v.id }}">
-            <button type="submit" class="btn-del">Delete Photo</button>
+            <button type="submit" class="btn-del">Delete / ሰርዝ</button>
           </form>
         </div>
       {% else %}
-        <p style="color: #9ca3af;">No victory photos have been uploaded.</p>
+        <p style="color: #9ca3af;">No victory photos uploaded yet.</p>
       {% endfor %}
     </div>
 
-    <!-- 5. Edit or Delete Matches -->
+    <!-- Edit or Delete Matches -->
     <div class="panel full-width">
-      <h2>✏️ Edit or Delete Matches</h2>
+      <h2>✏️ Edit Matches & Man of the Match <span class="am-hint">/ ጨዋታዎችን እና ኮከብ ተጫዋችን አስተካክል</span></h2>
       {% for m in matches %}
         <div class="item-row">
           <form method="POST" class="edit-form">
             <input type="hidden" name="action" value="edit_match">
             <input type="hidden" name="match_id" value="{{ m.id }}">
-            <input type="text" name="opp" value="{{ m.opp }}" required>
-            <input type="text" name="date" value="{{ m.date }}" required>
-            <input type="text" name="score" value="{{ m.score }}" required>
+            <input type="text" name="opp" value="{{ m.opp }}" placeholder="Opponent" required>
+            <input type="text" name="date" value="{{ m.date }}" placeholder="Date" required>
+            <input type="text" name="score" value="{{ m.score }}" placeholder="Score" required>
+            <input type="text" name="motm" value="{{ m.motm or '' }}" placeholder="⭐ Man of the Match / የጨዋታው ኮከብ">
             <select name="status">
-              <option value="Finished" {% if m.status == 'Finished' %}selected{% endif %}>Finished</option>
-              <option value="Upcoming" {% if m.status == 'Upcoming' %}selected{% endif %}>Upcoming</option>
+              <option value="Finished" {% if m.status == 'Finished' %}selected{% endif %}>Finished / የተጠናቀቀ</option>
+              <option value="Upcoming" {% if m.status == 'Upcoming' %}selected{% endif %}>Upcoming / ቀጣይ</option>
             </select>
-            <button type="submit" class="btn-save">Update</button>
+            <button type="submit" class="btn-save">Update / አዘምን</button>
           </form>
           <form method="POST">
             <input type="hidden" name="action" value="delete_match">
             <input type="hidden" name="match_id" value="{{ m.id }}">
-            <button type="submit" class="btn-del">Delete</button>
+            <button type="submit" class="btn-del">Delete / ሰርዝ</button>
           </form>
         </div>
       {% endfor %}
     </div>
 
-    <!-- 6. Manage Squad Roster -->
+    <!-- Manage Squad Roster -->
     <div class="panel full-width">
-      <h2>📋 Manage Squad Roster</h2>
+      <h2>📋 Manage Squad <span class="am-hint">/ የተጫዋቾች ዝርዝር</span></h2>
       {% for p in players %}
         <div class="item-row">
-          <span><strong>#{{ p.num }} {{ p.name }}</strong> — <span style="color: #10b981;">{{ p.pos }}</span></span>
+          <span>
+            <span class="cat-pill">{{ p.category or 'U-17' }}</span>
+            <strong>#{{ p.num }} {{ p.name }}</strong> — <span style="color: #10b981;">{{ p.pos }}</span>
+          </span>
           <form method="POST">
             <input type="hidden" name="action" value="delete_player">
             <input type="hidden" name="player_id" value="{{ p.id }}">
-            <button type="submit" class="btn-del">Remove Player</button>
+            <button type="submit" class="btn-del">Remove / አስወግድ</button>
           </form>
         </div>
       {% endfor %}

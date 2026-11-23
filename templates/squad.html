@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Temsalet FC | Youth & Club Squads</title>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@600;700&family=Plus+Jakarta+Sans:wght@400;600;700&family=Noto+Sans+Ethiopic:wght@600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-dark: #090d16;
+      --card-dark: #111827;
+      --emerald: #10b981;
+      --gold: #f59e0b;
+      --text-main: #f9fafb;
+      --text-muted: #9ca3af;
+      --border: rgba(255, 255, 255, 0.08);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: var(--bg-dark); color: var(--text-main); font-family: 'Plus Jakarta Sans', 'Noto Sans Ethiopic', sans-serif; font-size: 14px; line-height: 1.45; }
+    h1, h2, h3, .brand { font-family: 'Oswald', 'Noto Sans Ethiopic', sans-serif; text-transform: uppercase; letter-spacing: 0.3px; }
+    .am-sub { font-family: 'Noto Sans Ethiopic', sans-serif; color: var(--gold); font-weight: 600; font-size: 0.78em; text-transform: none; }
+
+    header { background: rgba(9, 13, 22, 0.94); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 50; }
+    .nav-wrap { max-width: 1100px; margin: auto; padding: 11px 14px; display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+    .brand { font-size: 1.35rem; font-weight: 700; color: var(--text-main); text-decoration: none; display: flex; align-items: center; gap: 6px; }
+    .brand span.green { color: var(--emerald); }
+    .back-btn { border: 1.5px solid var(--emerald); color: var(--emerald); padding: 5px 11px; border-radius: 6px; font-size: 0.75rem; font-weight: 700; text-decoration: none; }
+    .back-btn:hover { background: var(--emerald); color: var(--bg-dark); }
+
+    .container { max-width: 1100px; margin: auto; padding: 22px 14px 50px; }
+    .page-head { margin-bottom: 18px; }
+    .page-head h1 { font-size: 1.7rem; }
+    .page-head p { color: var(--text-muted); font-size: 0.84rem; margin-top: 2px; }
+
+    /* Age Category Filter Bars */
+    .age-tabs { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; background: var(--card-dark); padding: 6px; border-radius: 10px; border: 1px solid var(--border); margin-bottom: 22px; }
+    .age-btn { background: transparent; border: 1px solid transparent; color: var(--text-muted); padding: 8px 4px; border-radius: 7px; font-weight: 700; font-size: 0.78rem; cursor: pointer; text-align: center; transition: 0.2s; }
+    .age-btn span { display: block; font-size: 0.65rem; color: var(--gold); font-weight: 600; }
+    .age-btn.active { background: rgba(16, 185, 129, 0.16); border-color: var(--emerald); color: var(--emerald); }
+
+    .squad-section { display: none; margin-bottom: 28px; }
+    .squad-section.active { display: block; }
+    .sec-title { display: flex; align-items: center; gap: 8px; margin-bottom: 12px; }
+    .sec-title h2 { font-size: 1.3rem; }
+    .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--emerald); }
+
+    .squad-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(145px, 1fr)); gap: 10px; }
+    .player-card { background: var(--card-dark); border: 1px solid var(--border); border-radius: 10px; padding: 14px; position: relative; overflow: hidden; }
+    .p-num { position: absolute; right: 8px; top: 4px; font-family: 'Oswald', sans-serif; font-size: 2.5rem; font-weight: 700; color: rgba(255,255,255,0.05); line-height: 1; }
+    .p-pos { color: var(--emerald); font-size: 0.7rem; font-weight: 700; text-transform: uppercase; }
+    .player-card h3 { font-size: 1.1rem; margin-top: 4px; }
+    .empty-note { color: var(--text-muted); font-size: 0.85rem; background: var(--card-dark); padding: 14px; border-radius: 8px; border: 1px solid var(--border); }
+
+    @media (max-width: 520px) {
+      .age-tabs { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="nav-wrap">
+      <a href="/" class="brand">🦁 TEMSALET <span class="green">FC</span> <span style="font-family:'Noto Sans Ethiopic',sans-serif; color:var(--gold); font-size:1rem;">ተምሳሌት</span></a>
+      <a href="/" class="back-btn">← Home / መነሻ</a>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="page-head">
+      <h1>Full Club Squad <span class="am-sub">/ ሙሉ የተጫዋቾች ዝርዝር</span></h1>
+      <p>Select an age group below · ከታች የዕድሜ ምድብ ይምረጡ</p>
+    </div>
+
+    <div class="age-tabs">
+      <button class="age-btn active" onclick="filterSquad('all', this)">All Squads <span>ሁሉም ቡድኖች</span></button>
+      <button class="age-btn" onclick="filterSquad('u13', this)">U-13 Squad <span>ከ13 ዓመት በታች</span></button>
+      <button class="age-btn" onclick="filterSquad('u15', this)">U-15 Squad <span>ከ15 ዓመት በታች</span></button>
+      <button class="age-btn" onclick="filterSquad('u17', this)">U-17 Squad <span>ከ17 ዓመት በታች</span></button>
+    </div>
+
+    <!-- U-13 -->
+    <div id="grp-u13" class="squad-section active">
+      <div class="sec-title"><div class="dot" style="background: var(--gold);"></div><h2>U-13 Squad <span class="am-sub">/ ከ13 ዓመት በታች ቡድን</span></h2></div>
+      {% if u13 %}
+        <div class="squad-grid">
+          {% for p in u13 %}
+            <div class="player-card">
+              <div class="p-num">{{ p.num }}</div>
+              <div class="p-pos">{{ p.pos }}</div>
+              <h3>{{ p.name }}</h3>
+            </div>
+          {% endfor %}
+        </div>
+      {% else %}
+        <div class="empty-note">No U-13 players registered yet. / ከ13 ዓመት በታች ተጫዋች ገና አልተመዘገበም።</div>
+      {% endif %}
+    </div>
+
+    <!-- U-15 -->
+    <div id="grp-u15" class="squad-section active">
+      <div class="sec-title"><div class="dot"></div><h2>U-15 Squad <span class="am-sub">/ ከ15 ዓመት በታች ቡድን</span></h2></div>
+      {% if u15 %}
+        <div class="squad-grid">
+          {% for p in u15 %}
+            <div class="player-card">
+              <div class="p-num">{{ p.num }}</div>
+              <div class="p-pos">{{ p.pos }}</div>
+              <h3>{{ p.name }}</h3>
+            </div>
+          {% endfor %}
+        </div>
+      {% else %}
+        <div class="empty-note">No U-15 players registered yet. / ከ15 ዓመት በታች ተጫዋች ገና አልተመዘገበም።</div>
+      {% endif %}
+    </div>
+
+    <!-- U-17 -->
+    <div id="grp-u17" class="squad-section active">
+      <div class="sec-title"><div class="dot" style="background: #38bdf8;"></div><h2>U-17 Squad <span class="am-sub">/ ከ17 ዓመት በታች ቡድን</span></h2></div>
+      {% if u17 %}
+        <div class="squad-grid">
+          {% for p in u17 %}
+            <div class="player-card">
+              <div class="p-num">{{ p.num }}</div>
+              <div class="p-pos">{{ p.pos }}</div>
+              <h3>{{ p.name }}</h3>
+            </div>
+          {% endfor %}
+        </div>
+      {% else %}
+        <div class="empty-note">No U-17 players registered yet. / ከ17 ዓመት በታች ተጫዋች ገና አልተመዘገበም።</div>
+      {% endif %}
+    </div>
+  </div>
+
+  <script>
+    function filterSquad(group, btn) {
+      document.querySelectorAll('.age-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      const u13 = document.getElementById('grp-u13');
+      const u15 = document.getElementById('grp-u15');
+      const u17 = document.getElementById('grp-u17');
+
+      u13.classList.remove('active');
+      u15.classList.remove('active');
+      u17.classList.remove('active');
+
+      if (group === 'all') {
+        u13.classList.add('active');
+        u15.classList.add('active');
+        u17.classList.add('active');
+      } else if (group === 'u13') {
+        u13.classList.add('active');
+      } else if (group === 'u15') {
+        u15.classList.add('active');
+      } else if (group === 'u17') {
+        u17.classList.add('active');
+      }
+    }
+  </script>
+
+</body>
+</html>
