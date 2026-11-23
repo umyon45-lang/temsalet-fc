@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Temsalet FC | Official Club Portal</title>
-  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@600;700&family=Plus+Jakarta+Sans:wght@400;600;700&family=Noto+Sans+Ethiopic:wght@700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@600;700&family=Plus+Jakarta+Sans:wght@400;600;700&family=Noto+Sans+Ethiopic:wght@600;700&display=swap" rel="stylesheet">
   <style>
     :root {
       --bg-dark: #090d16;
@@ -17,69 +17,77 @@
       --border: rgba(255, 255, 255, 0.08);
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { background: var(--bg-dark); color: var(--text-main); font-family: 'Plus Jakarta Sans', sans-serif; line-height: 1.5; font-size: 15px; }
-    h1, h2, h3, .brand, .score-badge { font-family: 'Oswald', sans-serif; text-transform: uppercase; letter-spacing: 0.4px; }
-    
-    header { background: rgba(9, 13, 22, 0.92); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 50; }
-    .nav-wrap { max-width: 1150px; margin: auto; padding: 12px 18px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
-    .brand { font-size: 1.55rem; font-weight: 700; display: flex; align-items: center; gap: 8px; color: var(--text-main); text-decoration: none; }
+    body { background: var(--bg-dark); color: var(--text-main); font-family: 'Plus Jakarta Sans', 'Noto Sans Ethiopic', sans-serif; line-height: 1.45; font-size: 14px; }
+    h1, h2, h3, .brand, .score-badge { font-family: 'Oswald', 'Noto Sans Ethiopic', sans-serif; text-transform: uppercase; letter-spacing: 0.3px; }
+    .am-sub { font-family: 'Noto Sans Ethiopic', sans-serif; color: var(--gold); font-weight: 600; font-size: 0.78em; text-transform: none; letter-spacing: 0; }
+
+    header { background: rgba(9, 13, 22, 0.94); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 50; }
+    .nav-wrap { max-width: 1150px; margin: auto; padding: 10px 14px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; }
+    .brand { font-size: 1.35rem; font-weight: 700; display: flex; align-items: center; gap: 6px; color: var(--text-main); text-decoration: none; }
     .brand span.green { color: var(--emerald); }
-    .amharic { font-family: 'Noto Sans Ethiopic', sans-serif; color: var(--gold); font-size: 1.15rem; font-weight: 700; margin-left: 2px; }
+    .amharic { font-family: 'Noto Sans Ethiopic', sans-serif; color: var(--gold); font-size: 1.05rem; font-weight: 700; }
 
-    .nav-links { display: flex; align-items: center; gap: 10px; }
-    .vic-btn { background: rgba(245, 158, 11, 0.15); border: 1.5px solid var(--gold); color: var(--gold); padding: 6px 12px; border-radius: 6px; font-weight: 700; font-size: 0.8rem; text-decoration: none; transition: 0.2s; }
+    .nav-links { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+    .nav-pill { padding: 5px 10px; border-radius: 6px; font-weight: 700; font-size: 0.74rem; text-decoration: none; transition: 0.2s; display: inline-flex; align-items: center; gap: 4px; }
+    .squad-btn { background: rgba(16, 185, 129, 0.14); border: 1.5px solid var(--emerald); color: var(--emerald); }
+    .squad-btn:hover { background: var(--emerald); color: var(--bg-dark); }
+    .vic-btn { background: rgba(245, 158, 11, 0.14); border: 1.5px solid var(--gold); color: var(--gold); }
     .vic-btn:hover { background: var(--gold); color: var(--bg-dark); }
-    .admin-btn { background: transparent; border: 1.5px solid var(--emerald); color: var(--emerald); padding: 6px 13px; border-radius: 6px; font-weight: 700; font-size: 0.8rem; text-decoration: none; transition: 0.2s; }
-    .admin-btn:hover { background: var(--emerald); color: var(--bg-dark); box-shadow: 0 0 15px var(--emerald-glow); }
+    .admin-btn { background: transparent; border: 1.5px solid rgba(255,255,255,0.28); color: var(--text-main); }
+    .admin-btn:hover { border-color: var(--emerald); color: var(--emerald); }
 
-    .hero { background: radial-gradient(circle at top right, rgba(16, 185, 129, 0.15), transparent 50%), linear-gradient(180deg, #0f172a 0%, var(--bg-dark) 100%); border-bottom: 1px solid var(--border); padding: 36px 18px; }
-    .hero-grid { max-width: 1150px; margin: auto; display: flex; justify-content: space-between; align-items: center; gap: 24px; flex-wrap: wrap; }
+    .hero { background: radial-gradient(circle at top right, rgba(16, 185, 129, 0.15), transparent 50%), linear-gradient(180deg, #0f172a 0%, var(--bg-dark) 100%); border-bottom: 1px solid var(--border); padding: 28px 16px; }
+    .hero-grid { max-width: 1150px; margin: auto; display: flex; justify-content: space-between; align-items: center; gap: 20px; flex-wrap: wrap; }
     .hero-text { max-width: 580px; }
-    .tag { display: inline-block; background: rgba(16, 185, 129, 0.15); color: var(--emerald); padding: 3px 10px; border-radius: 20px; font-size: 0.68rem; font-weight: 700; letter-spacing: 1px; margin-bottom: 10px; }
-    .hero h1 { font-size: clamp(2.1rem, 5.5vw, 3.8rem); line-height: 1.05; margin-bottom: 6px; }
+    .tag { display: inline-block; background: rgba(16, 185, 129, 0.15); color: var(--emerald); padding: 3px 10px; border-radius: 20px; font-size: 0.66rem; font-weight: 700; letter-spacing: 0.8px; margin-bottom: 8px; }
+    .hero h1 { font-size: clamp(1.95rem, 5.2vw, 3.5rem); line-height: 1.05; margin-bottom: 4px; }
     .hero h1 span { color: var(--emerald); }
-    .hero-amharic { font-family: 'Noto Sans Ethiopic', sans-serif; font-size: clamp(1.1rem, 2.8vw, 1.65rem); font-weight: 700; color: var(--gold); margin-bottom: 10px; letter-spacing: 0.5px; }
-    .hero p { color: var(--text-muted); font-size: 0.92rem; }
+    .hero-amharic { font-family: 'Noto Sans Ethiopic', sans-serif; font-size: clamp(1.05rem, 2.6vw, 1.5rem); font-weight: 700; color: var(--gold); margin-bottom: 8px; }
+    .hero p { color: var(--text-muted); font-size: 0.86rem; }
 
-    .owner-box { text-align: center; background: var(--card-dark); padding: 16px 20px; border-radius: 14px; border: 1px solid var(--border); box-shadow: 0 15px 30px rgba(0,0,0,0.4); }
-    .owner-img { width: 110px; height: 110px; border-radius: 50%; object-fit: cover; border: 2.5px solid var(--emerald); box-shadow: 0 0 20px var(--emerald-glow); margin-bottom: 8px; }
-    .owner-box h3 { font-size: 1.1rem; color: var(--text-main); }
-    .owner-box span { color: var(--gold); font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.2px; }
+    .owner-box { text-align: center; background: var(--card-dark); padding: 14px 18px; border-radius: 14px; border: 1px solid var(--border); box-shadow: 0 12px 26px rgba(0,0,0,0.4); }
+    .owner-img { width: 96px; height: 96px; border-radius: 50%; object-fit: cover; border: 2.5px solid var(--emerald); box-shadow: 0 0 18px var(--emerald-glow); margin-bottom: 6px; }
+    .owner-box h3 { font-size: 1.02rem; color: var(--text-main); }
+    .owner-box span { color: var(--gold); font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; display: block; }
 
-    .container { max-width: 1150px; margin: auto; padding: 28px 18px 50px; }
+    .container { max-width: 1150px; margin: auto; padding: 22px 14px 48px; }
 
     /* Interactive Section Bars */
-    .tab-bar { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 24px; background: var(--card-dark); padding: 8px; border-radius: 10px; border: 1px solid var(--border); }
-    .tab-btn { flex: 1; min-width: 90px; background: transparent; border: 1px solid transparent; color: var(--text-muted); padding: 9px 12px; border-radius: 7px; font-family: 'Plus Jakarta Sans', sans-serif; font-weight: 700; font-size: 0.82rem; cursor: pointer; transition: 0.2s; text-align: center; }
+    .tab-bar { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; margin-bottom: 20px; background: var(--card-dark); padding: 6px; border-radius: 10px; border: 1px solid var(--border); }
+    .tab-btn { background: transparent; border: 1px solid transparent; color: var(--text-muted); padding: 7px 4px; border-radius: 7px; font-family: 'Plus Jakarta Sans', 'Noto Sans Ethiopic', sans-serif; font-weight: 700; font-size: 0.72rem; cursor: pointer; transition: 0.2s; text-align: center; line-height: 1.25; }
+    .tab-btn span { display: block; font-size: 0.66rem; font-weight: 600; color: var(--gold); opacity: 0.85; }
     .tab-btn:hover { color: var(--text-main); background: rgba(255,255,255,0.04); }
     .tab-btn.active { background: rgba(16, 185, 129, 0.16); border-color: var(--emerald); color: var(--emerald); }
 
-    .section-panel { display: none; margin-bottom: 34px; }
+    .section-panel { display: none; margin-bottom: 28px; }
     .section-panel.active { display: block; }
 
-    .sec-header { display: flex; align-items: center; gap: 10px; margin-bottom: 16px; }
-    .sec-header h2 { font-size: 1.55rem; }
-    .dot { width: 8px; height: 8px; background: var(--emerald); border-radius: 50%; }
+    .sec-header { display: flex; align-items: center; gap: 8px; margin-bottom: 12px; }
+    .sec-header h2 { font-size: 1.3rem; }
+    .dot { width: 8px; height: 8px; background: var(--emerald); border-radius: 50%; flex-shrink: 0; }
 
-    .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 14px; }
-    .match-card { background: var(--card-dark); border: 1px solid var(--border); border-radius: 10px; padding: 15px 18px; display: flex; justify-content: space-between; align-items: center; gap: 12px; transition: 0.2s; }
+    .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 12px; }
+    .match-card { background: var(--card-dark); border: 1px solid var(--border); border-radius: 10px; padding: 13px 15px; display: flex; justify-content: space-between; align-items: center; gap: 10px; transition: 0.2s; }
     .match-card:hover { border-color: var(--emerald); transform: translateY(-2px); }
-    .match-info small { color: var(--text-muted); font-size: 0.74rem; display: block; margin-bottom: 2px; }
-    .match-info h3 { font-size: 1.15rem; }
-    .score-badge { background: rgba(16, 185, 129, 0.15); color: var(--emerald); padding: 6px 12px; border-radius: 7px; font-size: 1.2rem; font-weight: 700; white-space: nowrap; }
+    .match-info { min-width: 0; flex: 1; }
+    .match-info small { color: var(--text-muted); font-size: 0.72rem; display: block; margin-bottom: 2px; }
+    .match-info h3 { font-size: 1.05rem; }
+    .motm-tag { display: inline-block; margin-top: 6px; background: rgba(245, 158, 11, 0.14); border: 1px solid rgba(245, 158, 11, 0.35); color: var(--gold); padding: 3px 8px; border-radius: 6px; font-size: 0.7rem; font-weight: 700; }
+    .score-badge { background: rgba(16, 185, 129, 0.15); color: var(--emerald); padding: 6px 11px; border-radius: 7px; font-size: 1.1rem; font-weight: 700; white-space: nowrap; }
     .upcoming-badge { background: rgba(245, 158, 11, 0.15); color: var(--gold); }
 
-    .squad-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; }
-    .player-card { background: var(--card-dark); border: 1px solid var(--border); border-radius: 10px; padding: 16px; position: relative; overflow: hidden; transition: 0.2s; }
+    .squad-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(145px, 1fr)); gap: 10px; }
+    .player-card { background: var(--card-dark); border: 1px solid var(--border); border-radius: 10px; padding: 13px; position: relative; overflow: hidden; transition: 0.2s; }
     .player-card:hover { border-color: var(--emerald); }
-    .p-num { position: absolute; right: 10px; top: 4px; font-family: 'Oswald', sans-serif; font-size: 2.8rem; font-weight: 700; color: rgba(255,255,255,0.05); line-height: 1; }
-    .p-pos { color: var(--emerald); font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px; }
-    .player-card h3 { font-size: 1.2rem; margin-top: 4px; }
+    .p-num { position: absolute; right: 8px; top: 4px; font-family: 'Oswald', sans-serif; font-size: 2.5rem; font-weight: 700; color: rgba(255,255,255,0.05); line-height: 1; }
+    .p-cat { display: inline-block; background: rgba(245, 158, 11, 0.14); color: var(--gold); font-size: 0.62rem; font-weight: 700; padding: 1px 6px; border-radius: 4px; margin-bottom: 4px; }
+    .p-pos { color: var(--emerald); font-size: 0.68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; }
+    .player-card h3 { font-size: 1.08rem; margin-top: 3px; }
 
     @media (max-width: 600px) {
       .hero-grid { justify-content: center; text-align: center; }
-      .owner-box { width: 100%; max-width: 240px; }
-      .tab-btn { font-size: 0.78rem; padding: 8px 6px; }
+      .owner-box { width: 100%; max-width: 220px; }
+      .tab-bar { grid-template-columns: repeat(2, 1fr); }
     }
   </style>
 </head>
@@ -89,8 +97,9 @@
     <div class="nav-wrap">
       <a href="/" class="brand">🦁 TEMSALET <span class="green">FC</span> <span class="amharic">ተምሳሌት</span></a>
       <div class="nav-links">
-        <a href="/victories" class="vic-btn">🏆 Victories</a>
-        <a href="/login" class="admin-btn">Owner Portal</a>
+        <a href="/squad" class="nav-pill squad-btn">⚽ Full Squad <span class="amharic" style="font-size:0.74rem;">ሙሉ ቡድን</span></a>
+        <a href="/victories" class="nav-pill vic-btn">🏆 Victories <span class="amharic" style="font-size:0.74rem;">ድሎች</span></a>
+        <a href="/login" class="nav-pill admin-btn">🔐 Admin <span class="amharic" style="font-size:0.74rem;">አስተዳዳሪ</span></a>
       </div>
     </div>
   </header>
@@ -98,15 +107,15 @@
   <section class="hero">
     <div class="hero-grid">
       <div class="hero-text">
-        <span class="tag">OFFICIAL CLUB PORTAL</span>
+        <span class="tag">OFFICIAL CLUB PORTAL · ይፋዊ የክለብ ገጽ</span>
         <h1>PRIDE. PASSION. <span>VICTORY.</span></h1>
         <div class="hero-amharic">ኩራት። ፍቅር። ድል።</div>
-        <p>Follow Temsalet FC's official match results, upcoming fixtures, and first-team squad updates.</p>
+        <p>Follow Temsalet FC match results, upcoming fixtures, and youth squads. · የተምሳሌት እግር ኳስ ክለብ ጨዋታዎችን፣ ውጤቶችን እና ተጫዋቾችን ይከታተሉ።</p>
       </div>
       <div class="owner-box">
         <img src="{{ url_for('static', filename=coach.photo) }}" alt="{{ coach.name }}" class="owner-img" onerror="this.src='https://via.placeholder.com/150/111827/10b981?text=COACH'">
         <h3>{{ coach.name }}</h3>
-        <span>{{ coach.role }}</span>
+        <span>{{ coach.role }} · ዋና አሰልጣኝ</span>
       </div>
     </div>
   </section>
@@ -114,15 +123,18 @@
   <div class="container">
     <!-- Interactive Filter Bars -->
     <div class="tab-bar">
-      <button class="tab-btn active" onclick="showTab('matches', this)">📅 Fixtures & Results</button>
-      <button class="tab-btn" onclick="showTab('fixtures', this)">⏳ Fixtures</button>
-      <button class="tab-btn" onclick="showTab('results', this)">✅ Results</button>
-      <button class="tab-btn" onclick="showTab('squad', this)">⚽ Squad</button>
+      <button class="tab-btn active" onclick="showTab('matches', this)">📅 All Matches <span>ሁሉም ጨዋታዎች</span></button>
+      <button class="tab-btn" onclick="showTab('fixtures', this)">⏳ Fixtures <span>ቀጣይ ጨዋታዎች</span></button>
+      <button class="tab-btn" onclick="showTab('results', this)">✅ Results <span>የጨዋታ ውጤቶች</span></button>
+      <button class="tab-btn" onclick="showTab('squad', this)">⚽ Squad <span>የተጫዋቾች ዝርዝር</span></button>
     </div>
 
     <!-- Upcoming Fixtures -->
     <div id="sec-fixtures" class="section-panel active">
-      <div class="sec-header"><div class="dot" style="background: var(--gold);"></div><h2>Upcoming Fixtures</h2></div>
+      <div class="sec-header">
+        <div class="dot" style="background: var(--gold);"></div>
+        <h2>Upcoming Fixtures <span class="am-sub">/ ቀጣይ ጨዋታዎች</span></h2>
+      </div>
       <div class="grid-2">
         {% for m in upcoming %}
           <div class="match-card">
@@ -133,36 +145,49 @@
             <div class="score-badge upcoming-badge">{{ m.score }}</div>
           </div>
         {% else %}
-          <p style="color: var(--text-muted); font-size: 0.9rem;">No upcoming matches scheduled yet.</p>
+          <p style="color: var(--text-muted); font-size: 0.85rem;">No upcoming matches scheduled yet. / ቀጣይ ጨዋታ ገና አልተመዘገበም።</p>
         {% endfor %}
       </div>
     </div>
 
     <!-- Recent Results -->
     <div id="sec-results" class="section-panel active">
-      <div class="sec-header"><div class="dot"></div><h2>Recent Results</h2></div>
+      <div class="sec-header">
+        <div class="dot"></div>
+        <h2>Recent Results <span class="am-sub">/ የቅርብ ጊዜ ውጤቶች</span></h2>
+      </div>
       <div class="grid-2">
         {% for m in finished %}
           <div class="match-card">
             <div class="match-info">
               <small>✅ FINAL · {{ m.date }}</small>
               <h3>Temsalet FC vs {{ m.opp }}</h3>
+              {% if m.motm %}
+                <div class="motm-tag">⭐ Man of the Match / የጨዋታው ኮከብ: {{ m.motm }}</div>
+              {% endif %}
             </div>
             <div class="score-badge">{{ m.score }}</div>
           </div>
         {% else %}
-          <p style="color: var(--text-muted); font-size: 0.9rem;">No match results posted yet.</p>
+          <p style="color: var(--text-muted); font-size: 0.85rem;">No match results posted yet. / የጨዋታ ውጤት ገና አልተለጠፈም።</p>
         {% endfor %}
       </div>
     </div>
 
-    <!-- First Team Squad -->
+    <!-- Squad Preview -->
     <div id="sec-squad" class="section-panel">
-      <div class="sec-header"><div class="dot"></div><h2>First Team Squad</h2></div>
+      <div class="sec-header" style="justify-content: space-between; flex-wrap: wrap;">
+        <div style="display:flex; align-items:center; gap:8px;">
+          <div class="dot"></div>
+          <h2>Club Squad <span class="am-sub">/ የተጫዋቾች ዝርዝር</span></h2>
+        </div>
+        <a href="/squad" class="nav-pill squad-btn">View U-13 / U-15 / U-17 →</a>
+      </div>
       <div class="squad-grid">
         {% for p in players %}
           <div class="player-card">
             <div class="p-num">{{ p.num }}</div>
+            <div class="p-cat">{{ p.category or 'U-17' }}</div>
             <div class="p-pos">{{ p.pos }}</div>
             <h3>{{ p.name }}</h3>
           </div>

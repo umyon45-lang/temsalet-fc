@@ -12,15 +12,18 @@ DATA_FILE = "club_data.json"
 UPLOAD_FOLDER = os.path.join("static", "uploads")
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
 
+
 def get_auth():
     if not os.path.exists(AUTH_FILE):
         return None
     with open(AUTH_FILE, "r") as f:
         return json.load(f)
 
+
 def save_auth(username, password):
     with open(AUTH_FILE, "w") as f:
         json.dump({"username": username.strip(), "password": password.strip()}, f)
+
 
 def get_data():
     default_coach = {
@@ -33,12 +36,12 @@ def get_data():
             "coach": default_coach,
             "victories": [],
             "matches": [
-                {"id": "1", "opp": "City Rivals", "score": "3 - 1", "date": "Nov 10, 2026", "status": "Finished"},
-                {"id": "2", "opp": "United FC", "score": "VS", "date": "Nov 22, 2026", "status": "Upcoming"}
+                {"id": "1", "opp": "City Rivals", "score": "3 - 1", "date": "Nov 10, 2026", "status": "Finished", "motm": "Yonas B."},
+                {"id": "2", "opp": "United FC", "score": "VS", "date": "Nov 22, 2026", "status": "Upcoming", "motm": ""}
             ],
             "players": [
-                {"id": "101", "name": "Yonas B.", "num": "10", "pos": "Forward"},
-                {"id": "102", "name": "Alex Smith", "num": "1", "pos": "Goalkeeper"}
+                {"id": "101", "name": "Yonas B.", "num": "10", "pos": "Forward", "category": "U-17"},
+                {"id": "102", "name": "Alex Smith", "num": "1", "pos": "Goalkeeper", "category": "U-15"}
             ]
         }
         save_data(default_data)
@@ -50,11 +53,17 @@ def get_data():
         data["coach"] = default_coach
     if "victories" not in data:
         data["victories"] = []
+    for m in data.get("matches", []):
+        m.setdefault("motm", "")
+    for p in data.get("players", []):
+        p.setdefault("category", "U-17")
     return data
+
 
 def save_data(data):
     with open(DATA_FILE, "w") as f:
         json.dump(data, f, indent=2)
+
 
 # 1. PUBLIC WEBSITE
 @app.route("/")
@@ -70,13 +79,32 @@ def home():
         players=data["players"]
     )
 
-# 2. CLUB VICTORIES GALLERY
+
+# 2. FULL YOUTH & CLUB SQUAD (U-13, U-15, U-17)
+@app.route("/squad")
+def squad():
+    data = get_data()
+    players = data["players"]
+    u13 = [p for p in players if p.get("category") == "U-13"]
+    u15 = [p for p in players if p.get("category") == "U-15"]
+    u17 = [p for p in players if p.get("category") in ("U-17", None, "")]
+    return render_template(
+        "squad.html",
+        u13=u13,
+        u15=u15,
+        u17=u17,
+        all_players=players
+    )
+
+
+# 3. CLUB VICTORIES GALLERY
 @app.route("/victories")
 def victories():
     data = get_data()
     return render_template("victories.html", victories=data["victories"])
 
-# 3. FIRST-TIME SETUP & LOGIN
+
+# 4. FIRST-TIME SETUP & LOGIN
 @app.route("/login", methods=["GET", "POST"])
 def login():
     auth = get_auth()
@@ -102,7 +130,8 @@ def login():
 
     return render_template("login.html", is_setup=(auth is None), error=error)
 
-# 4. OWNER CONTROL PANEL
+
+# 5. OWNER CONTROL PANEL
 @app.route("/admin", methods=["GET", "POST"])
 def admin():
     if not session.get("admin_logged_in"):
@@ -166,20 +195,22 @@ def admin():
         elif action == "add_match":
             data["matches"].insert(0, {
                 "id": str(uuid.uuid4())[:8],
-                "opp": request.form.get("opp"),
-                "score": request.form.get("score") or "VS",
-                "date": request.form.get("date"),
-                "status": request.form.get("status")
+                "opp": request.form.get("opp", "").strip(),
+                "score": request.form.get("score", "").strip() or "VS",
+                "date": request.form.get("date", "").strip(),
+                "status": request.form.get("status"),
+                "motm": request.form.get("motm", "").strip()
             })
 
         elif action == "edit_match":
             m_id = request.form.get("match_id")
             for m in data["matches"]:
                 if m["id"] == m_id:
-                    m["opp"] = request.form.get("opp")
-                    m["score"] = request.form.get("score")
-                    m["date"] = request.form.get("date")
+                    m["opp"] = request.form.get("opp", "").strip()
+                    m["score"] = request.form.get("score", "").strip()
+                    m["date"] = request.form.get("date", "").strip()
                     m["status"] = request.form.get("status")
+                    m["motm"] = request.form.get("motm", "").strip()
                     break
 
         elif action == "delete_match":
@@ -189,9 +220,10 @@ def admin():
         elif action == "add_player":
             data["players"].append({
                 "id": str(uuid.uuid4())[:8],
-                "name": request.form.get("name"),
-                "num": request.form.get("num"),
-                "pos": request.form.get("pos")
+                "name": request.form.get("name", "").strip(),
+                "num": request.form.get("num", "").strip(),
+                "pos": request.form.get("pos"),
+                "category": request.form.get("category", "U-17")
             })
 
         elif action == "delete_player":
@@ -216,11 +248,13 @@ def admin():
         auth=get_auth()
     )
 
-# 5. LOGOUT
+
+# 6. LOGOUT
 @app.route("/logout")
 def logout():
     session.clear()
     return redirect(url_for("home"))
+
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000, debug=True)
